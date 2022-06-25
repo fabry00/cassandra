@@ -9,6 +9,7 @@ services:
     volumes:
       - 'cassandra_data:/bitnami'
     environment:
+      - CASSANDRA_CLUSTER_NAME=my-cluster
       - CASSANDRA_SEEDS=192.168.1.45
       - CASSANDRA_PASSWORD_SEEDER=yes
       - CASSANDRA_PASSWORD=cassandra
@@ -18,6 +19,10 @@ services:
 volumes:
   cassandra_data:
     driver: local
+    driver_opts:
+      o: bind
+      type: None
+      device: ${PWD}/data
 
 networks:
   app-tier:
