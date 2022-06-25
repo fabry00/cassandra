@@ -12,6 +12,7 @@ services:
       - CASSANDRA_SEEDS=cassandra
       - CASSANDRA_PASSWORD_SEEDER=yes
       - CASSANDRA_PASSWORD=cassandra
+      - CASSANDRA_BROADCAST_ADDRESS=192.168.1.45
     networks:
       - app-tier
 volumes:
