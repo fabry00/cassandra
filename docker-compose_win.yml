@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+  cassandra:
+    image: bitnami/cassandra:4.0.4-debian-11-r8
+    ports:
+      - '7000:7000'
+      - '9042:9042'
+    volumes:
+      - 'cassandra_data:/bitnami'
+    environment:
+      - CASSANDRA_SEEDS=192.168.1.45
+      - CASSANDRA_PASSWORD_SEEDER=yes
+      - CASSANDRA_PASSWORD=cassandra
+      - CASSANDRA_BROADCAST_ADDRESS=192.168.1.38
+     # - CASSANDRA_HOST=192.168.1.38
+    networks:
+      - app-tier
+volumes:
+  cassandra_data:
+    driver: local
+
+networks:
+  app-tier:
+    driver: bridge
