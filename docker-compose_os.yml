@@ -4,7 +4,7 @@ services:
   cassandra:
     image: bitnami/cassandra:4.0.4-debian-11-r8
     ports:
-      - '7000:7000'
+      - '7500:7500'
       - '9042:9042'
     volumes:
       - 'cassandra_data:/bitnami'
@@ -14,15 +14,16 @@ services:
       - CASSANDRA_PASSWORD_SEEDER=yes
       - CASSANDRA_PASSWORD=cassandra
       - CASSANDRA_BROADCAST_ADDRESS=192.168.1.45
+      - CASSANDRA_TRANSPORT_PORT_NUMBER=7500
     networks:
       - app-tier
 volumes:
   cassandra_data:
     driver: local
-    driver_opts:
-      o: bind
-      type: None
-      device: ${PWD}/data
+    # driver_opts:
+    #   o: bind
+    #   type: None
+    #   device: ${PWD}/data
 
 networks:
   app-tier:
